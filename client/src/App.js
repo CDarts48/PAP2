@@ -1,24 +1,30 @@
-import logo from './logo.svg';
+import React from 'react';
+import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
+import tebo from './assets/Tebo.png';
 import './App.css';
+import Properties from './components/Properties'; // Import the Properties component
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <div className="App">
+        <header className="App-header">
+          <img src={tebo} className="App-logo" alt="Tebo Logo" />
+          <div className="button-group">
+            <Link to="/properties">
+              <button>Properties</button>
+            </Link>
+            <button>Unit</button>
+            <button>Tenants</button>
+            <button>Payments</button>
+          </div>
+        </header>
+        <Routes>
+          <Route path="/properties" element={<Properties />} />
+          {/* Add other routes here */}
+        </Routes>
+      </div>
+    </Router>
   );
 }
 
