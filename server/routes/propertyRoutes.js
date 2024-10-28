@@ -22,4 +22,15 @@ router.post('/', createProperty);
 // Route to get a single property by address
 router.get('/:address', getPropertyByAddress);
 
+// Route to search properties by name
+router.get('/search', async (req, res) => {
+  const { query } = req.query;
+  try {
+    const properties = await Property.find({ propertyAddress: new RegExp(query, 'i') });
+    res.json(properties);
+  } catch (error) {
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
+
 export default router;
