@@ -12,8 +12,9 @@ const Properties = () => {
     }
 
     try {
-      const response = await fetch(`http://localhost:3001/api/properties/search?query=${query}`);
+      const response = await fetch(`http://localhost:3001/properties/search?query=${query}`);
       const data = await response.json();
+      console.log('Fetched properties:', data); // Log the fetched properties
       setResults(data);
       setError(null); // Clear any previous errors
     } catch (error) {
@@ -37,9 +38,13 @@ const Properties = () => {
         {results.length > 0 ? (
           results.map((property) => (
             <div key={property._id}>
-              <h2>{property.name}</h2>
-              <p>{property.location}</p>
-              <p>{property.price}</p>
+              <h2>{property.propertyAddress}</h2>
+              <p>{property.city}, {property.state}</p>
+              <p>Type: {property.propertyType}</p>
+              <p>Price: ${property.purchasePrice}</p>
+              <p>Size: {property.propertySize} {property.sizeUnit}</p>
+              <p>Year Built: {property.yearBuilt}</p>
+              <p>Description: {property.description}</p>
             </div>
           ))
         ) : (
