@@ -33,6 +33,7 @@ const Content = () => {
         <button>Properties</button>
       </Link>
       <button>Unit</button>
+      <button>HomeDepot</button>
       <button>Tenants</button>
       <button>Payments</button>
     </div>
@@ -41,7 +42,6 @@ const Content = () => {
 
 const Home = () => (
   <div>
-    <h1>Welcome to the Home Page</h1>
   </div>
 );
 

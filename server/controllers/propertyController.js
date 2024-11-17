@@ -2,6 +2,8 @@ import Property from '../models/Property.js';
 
 // Get all properties
 export const getAllProperties = async (req, res) => {
+
+  console.log("find all properties");
   try {
     const properties = await Property.find();
     res.json(properties);
@@ -41,6 +43,9 @@ export const createProperty = async (req, res) => {
 
 // Get a single property by address
 export const getPropertyByAddress = async (req, res) => {
+
+  console.log("find all properties");
+
   try {
     const property = await Property.findOne({ propertyAddress: req.params.address });
     if (!property) {
