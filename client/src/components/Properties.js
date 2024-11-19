@@ -12,7 +12,7 @@ const Properties = () => {
     }
 
     try {
-      const response = await fetch(`http://localhost:3001/properties/search?query=${query}`);
+      const response = await fetch(`http://localhost:3001/properties/search?query=${encodeURIComponent(query)}`);
       if (!response.ok) {
         throw new Error('Network response was not ok');
       }
