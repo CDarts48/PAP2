@@ -1,26 +1,8 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes, Link, useLocation } from 'react-router-dom';
-import tebo from './assets/Tebo.png';
+import Tebo from './assets/Tebo.png';
 import './App.css';
-import Properties from './components/Properties'; // Import the Properties component
-
-function App() {
-  return (
-    <Router>
-      <div className="App">
-        <header className="App-header">
-          <img src={tebo} className="App-logo" alt="Tebo Logo" />
-          <Content />
-        </header>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/properties" element={<Properties />} />
-          {/* Add other routes here */}
-        </Routes>
-      </div>
-    </Router>
-  );
-}
+import Properties from './components/Properties';
 
 const Content = () => {
   const location = useLocation();
@@ -44,5 +26,23 @@ const Home = () => (
   <div>
   </div>
 );
+
+function App() {
+  return (
+    <Router>
+      <div className="App">
+        <header className="App-header">
+          <img src={Tebo} className="App-logo" alt="Tebo Logo" />
+          <Content />
+        </header>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/properties" element={<Properties />} />
+          {/* Add other routes here */}
+        </Routes>
+      </div>
+    </Router>
+  );
+}
 
 export default App;

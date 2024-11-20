@@ -1,25 +1,22 @@
 import express from 'express';
-import Property from '../models/Property.js';
-// import propertyMiddleware from '../middleware/propertyMiddleware.js';
+import { getAllProperties, createProperty, searchProperties, getPropertyById } from '../controllers/propertyController.js';
+import propertyMiddleware from '../middleware/propertyMiddleware.js';
 
 const router = express.Router();
 
-// Use property-specific middleware
-// router.use(propertyMiddleware);
+// Apply the middleware to all property routes
+router.use(propertyMiddleware);
+
+// Route to get all properties
+router.get('/all', getAllProperties);
+
+// Route to create a new property
+router.post('/', createProperty);
 
 // Route to search properties by address
-router.get('/search', async (req, res) => {
-  const { query } = req.query;
-  try {
-    const properties = await Property.find({ propertyAddress: new RegExp(query, 'i') });
-    if (properties.length === 0) {
-      return res.status(404).json({ message: 'Property not found' });
-    }
-    res.json(properties);
-  } catch (error) {
-    console.log(error);
-    res.status(500).json({ error: 'Internal Server Error' });
-  }
-});
+router.get('/search', searchProperties);
+
+// Route to get a property by _id
+router.get('/:id', getPropertyById);
 
 export default router;
