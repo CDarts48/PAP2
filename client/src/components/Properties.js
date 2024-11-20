@@ -38,21 +38,17 @@ const Properties = () => {
       <button onClick={handleSearch}>Search</button>
       {error && <p style={{ color: 'red' }}>{error}</p>}
       <div>
-        {results.length > 0 ? (
-          results.map((property) => (
-            <div key={property._id}>
-              <h2>{property.propertyAddress}</h2>
-              <p>{property.city}, {property.state}</p>
-              <p>Type: {property.propertyType}</p>
-              <p>Price: ${property.purchasePrice}</p>
-              <p>Size: {property.propertySize} {property.sizeUnit}</p>
-              <p>Year Built: {property.yearBuilt}</p>
-              <p>Description: {property.description}</p>
-            </div>
-          ))
-        ) : (
-          <p>No properties found.</p>
-        )}
+        {results.length > 0 && results.map((property) => (
+          <div key={property._id}>
+            <h2>{property.propertyAddress}</h2>
+            <p>{property.city}, {property.state}</p>
+            <p>Type: {property.propertyType}</p>
+            <p>Price: ${property.purchasePrice}</p>
+            <p>Size: {property.propertySize} {property.sizeUnit}</p>
+            <p>Year Built: {property.yearBuilt}</p>
+            <p>Description: {property.description}</p>
+          </div>
+        ))}
       </div>
     </div>
   );
