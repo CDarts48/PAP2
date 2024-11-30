@@ -13,6 +13,7 @@ const AccountTableDataSchema = new Schema({
 const TenantSchema = new Schema({
   name: { type: String, required: true },
   moveInDate: { type: String, required: true }, // Assuming date is stored as a string
+  // checkinList: { type: Boolean, required: true }, automate email to tenant
   rent: { type: Number, required: true },
   leaseDuration: { type: Number, required: true },
   contactInfo: {
