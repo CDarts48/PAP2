@@ -10,7 +10,9 @@ dotenv.config();
 const app = express();
 const port = process.env.PORT || 3001;
 
-app.use(cors());
+app.use(cors({
+  origin: 'https://your-frontend-url.onrender.com' // Replace with your frontend URL
+}));
 app.use(express.json());
 
 mongoose.connect(process.env.MONGODB_URI, {
