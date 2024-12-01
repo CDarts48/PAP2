@@ -2,6 +2,7 @@ import express from 'express';
 import mongoose from 'mongoose';
 import cors from 'cors';
 import dotenv from 'dotenv';
+import path from 'path';
 import propertiesRoutes from './routes/propertyRoutes.js';
 
 dotenv.config();
@@ -33,8 +34,12 @@ mongoose.connect(process.env.MONGODB_URI, {
 
 app.use('/properties', propertiesRoutes);
 
-app.get('/', (req, res) => {
-  res.send('Hello World!');
+// Serve the index.html file
+const __dirname = path.resolve();
+app.use(express.static(path.join(__dirname, 'client/build')));
+
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'client/build', 'index.html'));
 });
 
 app.listen(port, () => {

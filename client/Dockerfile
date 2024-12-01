@@ -13,14 +13,8 @@ RUN npm install
 # Copy the rest of the application code
 COPY . .
 
-# Build the application
-RUN npm run build
-
-# Install a simple HTTP server to serve the static files
-RUN npm install -g serve
-
 # Expose the port the app runs on
-EXPOSE 5000
+EXPOSE 3000
 
-# Command to serve the static files
-CMD ["serve", "-s", "build"]
+# Command to run the frontend server
+CMD ["npm", "run", "start"]
