@@ -10,9 +10,12 @@ dotenv.config();
 const app = express();
 const port = process.env.PORT || 3001;
 
+// Use the CORS middleware
 app.use(cors({
-  origin: 'https://your-frontend-url.onrender.com' // Replace with your frontend URL
+  origin: 'https://your-frontend-url.onrender.com', // Replace with your frontend URL
+  credentials: true
 }));
+
 app.use(express.json());
 
 mongoose.connect(process.env.MONGODB_URI, {
@@ -38,10 +41,10 @@ app.use('/properties', propertiesRoutes);
 
 // Serve the index.html file
 const __dirname = path.resolve();
-app.use(express.static(path.join(__dirname, 'client/build')));
+app.use(express.static(path.join(__dirname, 'build')));
 
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'client/build', 'index.html'));
+  res.sendFile(path.join(__dirname, 'build', 'index.html'));
 });
 
 app.listen(port, () => {
