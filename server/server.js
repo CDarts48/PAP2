@@ -12,7 +12,7 @@ const port = process.env.PORT || 3001;
 
 // Use the CORS middleware
 app.use(cors({
-  origin: 'https://pap2.onrender.com', 
+  origin: 'https://pap2.frontend.onrender.com', 
   credentials: true
 }));
 
