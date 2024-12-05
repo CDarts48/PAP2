@@ -6,7 +6,7 @@ COPY ../client/package*.json ./client/
 WORKDIR /app/client
 RUN npm install
 # Copy the rest of the frontend code into the container
-COPY ../client/ ./client/
+COPY ../client/ ./
 # Build the React app for production (this will create the build folder)
 RUN npm run build
 
