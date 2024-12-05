@@ -1,14 +1,13 @@
 # Stage 1: Build the frontend
 FROM node:16 as build-frontend
 
-WORKDIR /app
+WORKDIR /app/client
 
 # Copy the React app files
-COPY ../client/package*.json ./client/
-WORKDIR /app/client
+COPY ./client/package*.json ./
 RUN npm install
 
-COPY ../client/ ./client/
+COPY ./client/ ./
 
 # Run the React build process
 RUN npm run build
@@ -19,13 +18,13 @@ FROM node:16
 WORKDIR /app
 
 # Copy the backend package.json and package-lock.json
-COPY ./package*.json ./
+COPY ./server/package*.json ./
 
 # Install backend dependencies
 RUN npm install
 
 # Copy the rest of the backend application code
-COPY ./ ./
+COPY ./server/ ./
 
 # Copy the frontend build artifacts from the previous stage
 COPY --from=build-frontend /app/client/build ./client/build
