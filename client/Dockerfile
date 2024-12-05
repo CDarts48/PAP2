@@ -17,4 +17,4 @@ COPY . .
 EXPOSE 3000
 
 # Command to run the frontend server
-CMD ["npm", "run", "start"]
+CMD ["npm", "start"]
