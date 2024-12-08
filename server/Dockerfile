@@ -1,7 +1,22 @@
-# Use the Node.js 16 image as the base image
+# Stage 1: Build the frontend
+FROM node:16 as build-frontend
+
+WORKDIR /app/client
+
+# Copy the React app files
+COPY ./client/package*.json ./
+RUN npm install
+
+# Copy the rest of the React app code
+COPY ./client/ ./
+
+# Run the React build process
+RUN npm run build
+
+# Stage 2: Build the backend
 FROM node:16
 
-WORKDIR /app
+WORKDIR /app/server
 
 # Copy the backend package.json and package-lock.json
 COPY ./server/package*.json ./
@@ -12,8 +27,8 @@ RUN npm install
 # Copy the rest of the backend application code
 COPY ./server/ ./
 
-# Copy the pre-built frontend assets
-COPY ./client/build ./client/build
+# Copy the frontend build artifacts from the frontend stage
+COPY --from=build-frontend /app/client/build ./client/build
 
 # Expose the port the backend server listens on
 EXPOSE 3001
