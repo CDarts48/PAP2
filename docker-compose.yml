@@ -1,13 +1,14 @@
 services:
   server:
     build:
-      context: .
-      dockerfile: ./server/Dockerfile
+      context: ./server
+      dockerfile: Dockerfile
     ports:
       - "3001:3001"
     environment:
       - NODE_ENV=development
-
+    depends_on:
+      - frontend
   frontend:
     build:
       context: ./client
