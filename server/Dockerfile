@@ -4,13 +4,13 @@ FROM node:16
 WORKDIR /app
 
 # Copy the backend package.json and package-lock.json
-COPY ./package*.json ./
+COPY package*.json ./
 
 # Install backend dependencies
 RUN npm install
 
 # Copy the rest of the backend application code
-COPY ./ ./
+COPY . .
 
 # Expose the port the backend server listens on
 EXPOSE 3001
